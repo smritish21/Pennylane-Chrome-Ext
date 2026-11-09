@@ -22,15 +22,7 @@ This branch (`prolific_study`) is the version deployed for online participants r
 
 Progress (current state, solved exercises and remaining time per exercise) is persisted in `chrome.storage.local`, so a page reload doesn't reset the study.
 
-## Study conditions
 
-The condition is set by the `type` URL parameter:
-
-| `type` | Condition | Feedback on a wrong submission |
-|--------|-----------|--------------------------------|
-| `bhgv` | LLM hints | The question and the participant's code are sent to the QuantumTutor LLM endpoint, and its reply replaces the error message. |
-| `cfdx` | Expert hints | A randomly chosen hand-written hint for that exercise from `expertHints.js`. |
-| `mkjn` | Control | PennyLane's standard feedback is left unchanged; attempts are still logged. |
 
 ## Installation
 
@@ -95,14 +87,6 @@ All records are sent as JSON `POST` requests to the study server:
 └── button_style.css                 # Floating panel and highlight styles
 ```
 
-## Branches
-
-| Branch | Purpose |
-|--------|---------|
-| `prolific_study` | Online study with Prolific participants (this branch) |
-| `online_study` | Earlier online study version |
-| `offline_study` | In-person / lab study version |
-| `main` | Base version |
 
 ## Notes
 
