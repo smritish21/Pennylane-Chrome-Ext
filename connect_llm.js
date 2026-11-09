@@ -4,11 +4,11 @@ async function getLLMResponse(question,solution,errorMessage) {
     const fullCode = cleanCode.join('\n');
     console.log('Received content - ',question,fullCode )
     try {
-      const response = await fetch('https://survey.dfki.de/quantumtutorllm', {
+      const response = await fetch('SERVER URL', {
       method: 'POST',
       headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'mysecret123test'
+              'Authorization': ''
       },
       body: JSON.stringify({
         "body":{
