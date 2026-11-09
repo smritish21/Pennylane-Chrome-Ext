@@ -4,11 +4,11 @@ async function saveToServer(question,solution,hintResponse,uid,qid,cid,timestamp
     const fullCode = cleanCode.join('\n');
     console.log('Received content to save:- ',question,fullCode ,hintResponse,uid,qid,cid,timestamp,correctAnswer,code_len)
     try {
-      const response = await fetch('https://survey.dfki.de/quantumtutor', {
+      const response = await fetch('SERVER URL', {
       method: 'POST',
       headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'mysecret123test'
+              'Authorization': ''
       },
       body: JSON.stringify({
         "u_id": uid,
@@ -35,11 +35,11 @@ async function saveToServer(question,solution,hintResponse,uid,qid,cid,timestamp
 
     console.log('Received content to save:- ',uid,timestamp,cid)
     try {
-      const response = await fetch('https://survey.dfki.de/quantumtutor', {
+      const response = await fetch('SERVER URL', {
       method: 'POST',
       headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'mysecret123test'
+              'Authorization': ''
       },
       body: JSON.stringify({
         "User_ID": uid,
@@ -62,11 +62,11 @@ async function saveToServer(question,solution,hintResponse,uid,qid,cid,timestamp
 
     console.log('Received content to save:- ',questionId,u_id,q_type, timeSpentMs,log)
     try {
-      const response = await fetch('https://survey.dfki.de/quantumtutor', {
+      const response = await fetch('SERVER URL', {
       method: 'POST',
       headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'mysecret123test'
+              'Authorization': ''
       },
       body: JSON.stringify({
         "question": questionId,
