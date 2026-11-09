@@ -1,23 +1,24 @@
-async function saveToServer(question,solution,hintResponse,uid,qid,cid,timestamp,correctAnswer) {
+async function saveToServer(question,solution,hintResponse,uid,qid,cid,timestamp,correctAnswer,code_len) {
 
     const cleanCode = solution.map(line => line.trim()).filter(line => line !== '');
     const fullCode = cleanCode.join('\n');
-    console.log('Received content to save:- ',question,fullCode ,hintResponse,uid,qid,cid,timestamp,correctAnswer)
+    console.log('Received content to save:- ',question,fullCode ,hintResponse,uid,qid,cid,timestamp,correctAnswer,code_len)
     try {
-      const response = await fetch('https://survey.dfki.de/quantumtutor', {
+      const response = await fetch('SERVER URL', {
       method: 'POST',
       headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'mysecret123test'
+              'Authorization': ''
       },
       body: JSON.stringify({
         "u_id": uid,
         "timestamp": timestamp,
-        "cid": cid,
+        "Question_ID": cid,
         "question": question,
         "fullCode": fullCode,
         "hintResponse": hintResponse,
-        "correctAnswer": correctAnswer
+        "correctAnswer": correctAnswer,
+        "Code length":code_len
       })
       });
       console.log('Server response :-',response)
@@ -28,25 +29,22 @@ async function saveToServer(question,solution,hintResponse,uid,qid,cid,timestamp
     } catch (error) {
       console.error("Error communicating with server:", error);
     }
-    //create a startstudy button on the UI -- done
-    //check if answer is correct? new function ()
-    //correctAnswer -- boolean
   }
 
   async function saveStartingToServer(uid,timestamp,cid) {
 
     console.log('Received content to save:- ',uid,timestamp,cid)
     try {
-      const response = await fetch('https://survey.dfki.de/quantumtutor', {
+      const response = await fetch('SERVER URL', {
       method: 'POST',
       headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'mysecret123test'
+              'Authorization': ''
       },
       body: JSON.stringify({
-        "u_id": uid,
+        "User_ID": uid,
         "timestamp": timestamp,
-        "cid": cid
+        "Question_ID": cid
       })
       });
       console.log('Server response :-',response)
@@ -60,19 +58,21 @@ async function saveToServer(question,solution,hintResponse,uid,qid,cid,timestamp
 
 
   }
-  async function saveTimeSpentToServer(questionId, timeSpentMs,log)  {
+  async function saveTimeSpentToServer(questionId, u_id,q_type,timeSpentMs,log)  {
 
-    console.log('Received content to save:- ',questionId, timeSpentMs,log)
+    console.log('Received content to save:- ',questionId,u_id,q_type, timeSpentMs,log)
     try {
-      const response = await fetch('https://survey.dfki.de/quantumtutor', {
+      const response = await fetch('SERVER URL', {
       method: 'POST',
       headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'mysecret123test'
+              'Authorization': ''
       },
       body: JSON.stringify({
         "question": questionId,
-        "timestamp": timeSpentMs,
+        "User ID": u_id,
+        "Question ID": q_type,
+        "Time Spent": timeSpentMs,
         "log": log
       })
       });
